@@ -1,38 +1,33 @@
-.App {
-  text-align: center;
+.hero {
+	background: url('./assets/img/Hero.svg') no-repeat;
+	background-position: center;
+	background-size: cover;
+	height: 510px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.card-text {
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.dropdown-menu {
+	margin-top: 1em !important;
+	border: none;
+	filter: drop-shadow(0 0 2px grey);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.dropdown-menu::before {
+	z-index: -1;
+	content: url('./assets/img/polygon.svg');
+	position: absolute;
+	top: -1.3em;
+	left: 5.5em;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dropdown-item:active {
+	background-color: #f6dada;
+	color: #bd0707;
 }
