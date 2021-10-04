@@ -1,5 +1,6 @@
-import React, { useState, useContext } from 'react';
 import { Modal, Button, Form, Alert } from 'react-bootstrap';
+import React, { useState, useContext } from 'react';
+
 import { useHistory } from 'react-router-dom';
 import { registerUser } from '../../config/server';
 import { AppContext } from '../../context/AppContext';
@@ -40,6 +41,7 @@ function RegisterModal(props) {
 				email: '',
 				password: '',
 				phone: '',
+				address: '',
 			});
 			props.handleClose();
 			router.push('/');
@@ -60,11 +62,12 @@ function RegisterModal(props) {
 			show={props.show}
 			onHide={props.handleClose}
 			dialogClassName='modal-overide'
+			style={{ width: '350px !important' }}
 			size='sm'
 			centered
 		>
 			<Modal.Body>
-				<Modal.Title className='text-overide text-center fw-bold'>Register</Modal.Title>
+				<Modal.Title className='text-center fw-bold my-3'>Register</Modal.Title>
 				<br />
 				<Alert
 					variant='danger'
@@ -82,7 +85,6 @@ function RegisterModal(props) {
 							name='fullName'
 							value={formData.name}
 							onChange={(e) => handleChange(e)}
-							className='input-overide'
 						/>
 					</Form.Group>
 
@@ -93,7 +95,6 @@ function RegisterModal(props) {
 							name='email'
 							value={formData.email}
 							onChange={(e) => handleChange(e)}
-							className='input-overide'
 						/>
 					</Form.Group>
 
@@ -104,7 +105,6 @@ function RegisterModal(props) {
 							name='password'
 							value={formData.password}
 							onChange={(e) => handleChange(e)}
-							className='input-overide'
 						/>
 					</Form.Group>
 
@@ -115,7 +115,16 @@ function RegisterModal(props) {
 							name='phone'
 							value={formData.phone}
 							onChange={(e) => handleChange(e)}
-							className='input-overide'
+						/>
+					</Form.Group>
+					<Form.Group className='mb-3' controlId='address'>
+						<Form.Label className='fw-bold'>Address</Form.Label>
+						<Form.Control
+							as='textarea'
+							name='address'
+							value={formData.address}
+							onChange={(e) => handleChange(e)}
+							rows={3}
 						/>
 					</Form.Group>
 					<div className='d-grid gap-2 my-3'>

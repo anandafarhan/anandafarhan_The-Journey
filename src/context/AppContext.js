@@ -2,11 +2,6 @@ import { createContext, useReducer } from 'react';
 
 export const AppContext = createContext();
 
-function isArrMatch(a, b) {
-	let match = JSON.stringify(a) === JSON.stringify(b);
-	return match;
-}
-
 const initialState = {
 	isLoading: false,
 	isLogin: false,
@@ -28,7 +23,7 @@ const reducer = (state, action) => {
 					name: action.payload.fullName,
 					email: action.payload.email,
 					phone: action.payload.phone,
-					address: null,
+					address: action.payload.address,
 					avatar: null,
 				},
 			};

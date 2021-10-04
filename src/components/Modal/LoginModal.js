@@ -1,17 +1,20 @@
-import React, { useState, useContext } from 'react';
 import { Modal, Button, Form, Alert } from 'react-bootstrap';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+
 import { loginUser } from '../../config/server';
 import { AppContext } from '../../context/AppContext';
 
 function LoginModal(props) {
 	const route = useHistory();
 	const [state, dispatch] = useContext(AppContext);
+
 	const [failed, setFailed] = useState({
 		status: false,
 		message: '',
 		errors: '',
 	});
+
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
@@ -52,15 +55,9 @@ function LoginModal(props) {
 	return state.isLogin ? (
 		''
 	) : (
-		<Modal
-			show={props.show}
-			onHide={props.handleClose}
-			dialogClassName='modal-overide'
-			size='sm'
-			centered
-		>
+		<Modal show={props.show} onHide={props.handleClose} dialogClassName='modal-overide' centered>
 			<Modal.Body>
-				<Modal.Title className='text-overide text-center fw-bold'>Login</Modal.Title>
+				<Modal.Title className='text-center fw-bold my-3'>Login</Modal.Title>
 				<br />
 				<Alert
 					variant='danger'
@@ -78,7 +75,6 @@ function LoginModal(props) {
 							name='email'
 							value={formData.email}
 							onChange={(e) => handleChange(e)}
-							className='input-overide'
 						/>
 					</Form.Group>
 
@@ -89,12 +85,11 @@ function LoginModal(props) {
 							name='password'
 							value={formData.password}
 							onChange={(e) => handleChange(e)}
-							className='input-overide'
 						/>
 					</Form.Group>
 
 					<div className='d-grid gap-2 my-3'>
-						<Button variant='primary' className='bg-overide' type='submit'>
+						<Button variant='primary' type='submit'>
 							Login
 						</Button>
 					</div>

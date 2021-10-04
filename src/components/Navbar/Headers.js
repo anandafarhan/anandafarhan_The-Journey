@@ -1,12 +1,13 @@
+import { Navbar, Container } from 'react-bootstrap';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Container } from 'react-bootstrap';
-import LoginModal from '../Modal/LoginModal';
-import RegisterModal from '../Modal/RegisterModal';
-import User from './User';
-import Guest from './Guest';
+
 import { AppContext } from '../../context/AppContext';
+import RegisterModal from '../Modal/RegisterModal';
+import LoginModal from '../Modal/LoginModal';
 import Logo from '../../assets/img/Logo.svg';
+import Guest from './Guest';
+import User from './User';
 
 function Headers() {
 	const [state, dispatch] = useContext(AppContext);
@@ -25,9 +26,9 @@ function Headers() {
 				collapseOnSelect
 				expand='lg'
 				className={
-					!state.isLogin ? 'd-flex align-items-start hero' : 'd-flex align-items-start shadow-sm'
+					!state.isLogin ? 'd-flex align-items-start hero' : 'd-flex align-items-start fixed-top shadow'
 				}
-				bg='white'
+				style={{ backgroundColor: '#F1F1F1' }}
 			>
 				<Container className=' d-flex justify-content-between'>
 					<Link to='/'>

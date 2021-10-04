@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
 import { Dropdown, Nav, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { AppContext } from '../../context/AppContext';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import BookmarkIco from '../../assets/img/Icon/BookmarkIco.svg';
+import LogoutIco from '../../assets/img/Icon/LogoutIco.svg';
 import UserIco from '../../assets/img/Icon/UserIco.svg';
 import LeafIco from '../../assets/img/Icon/LeafIco.svg';
-import LogoutIco from '../../assets/img/Icon/LogoutIco.svg';
+import { AppContext } from '../../context/AppContext';
 
 function User() {
 	const [state, dispatch] = useContext(AppContext);
@@ -51,7 +51,7 @@ function User() {
 								New Journey
 							</Dropdown.Item>
 							<Dropdown.Item as={Link} to='/bookmark' className='p-2'>
-								<img src={BookmarkIco} className='mx-2' width='20rem' alt='Bookmark' />
+								<img src={BookmarkIco} className='ms-2 me-3' width='20rem' alt='Bookmark' />
 								Bookmark
 							</Dropdown.Item>
 							<Dropdown.Divider />

@@ -5,13 +5,15 @@ import { useEffect, useContext } from 'react';
 import { API, setAuthToken } from './config/server';
 import { AppContext } from './context/AppContext';
 
-import './App.css';
-import Headers from './components/Navbar/Headers';
-import Home from './pages/Home';
+import PrivateRoute from './components/Routes/PrivateRoute';
 import JourneyDetail from './pages/JourneyDetail';
+import Headers from './components/Navbar/Headers';
+import EditJourney from './pages/EditJourney';
 import NewJourney from './pages/NewJourney';
-import Profile from './pages/Profile';
 import Bookmarks from './pages/Bookmarks';
+import Profile from './pages/Profile';
+import Home from './pages/Home';
+import './App.css';
 
 function App() {
 	const [state, dispatch] = useContext(AppContext);
@@ -39,7 +41,6 @@ function App() {
 
 	useEffect(() => {
 		loadUser();
-		console.log(process.env);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -50,10 +51,11 @@ function App() {
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home} />
-					<Route exact path='/profile' component={Profile} />
-					<Route exact path='/bookmark' component={Bookmarks} />
 					<Route exact path='/journey/:id' component={JourneyDetail} />
-					<Route exact path='/journey' component={NewJourney} />
+					<PrivateRoute exact path='/profile' component={Profile} />
+					<PrivateRoute exact path='/bookmark' component={Bookmarks} />
+					<PrivateRoute exact path='/journey' component={NewJourney} />
+					<PrivateRoute exact path='/editJourney/:id' component={EditJourney} />
 				</Switch>
 			</div>
 		</Router>

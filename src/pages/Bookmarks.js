@@ -1,35 +1,36 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Col, Row } from 'react-bootstrap';
+
 import JourneyCard from '../components/Card/JourneyCard';
-import { getJourneys } from '../config/server';
+import NoData from '../components/placeholder/NoData';
+import { getUserBookmarks } from '../config/server';
 import { AppContext } from '../context/AppContext';
 
 function Bookmarks() {
-	const [state, dispatch] = useContext(AppContext);
-	const [journeys, setJourneys] = useState([]);
-	async function getAllJourneys() {
-		const response = await getJourneys();
-		setJourneys(response ? response.data.data.journeys : []);
+	const [state] = useContext(AppContext);
+	const [bookmarks, setBookmarks] = useState([]);
+
+	async function getBookmarks() {
+		const response = await getUserBookmarks();
+		setBookmarks(response.status === 200 ? response.data.data.bookmarks : []);
 	}
 
 	useEffect(() => {
-		getAllJourneys();
+		getBookmarks();
 	}, [state.isLoading]);
 	return (
-		<div className='mx-5 my-5'>
+		<div className='mx-5' style={{ marginTop: '100px' }}>
 			<h1>Bookmark</h1>
-			{journeys.length < 1 ? (
-				'No Journeys'
+			{bookmarks.length < 1 ? (
+				<NoData placeholder='No Journeys Bookmarked' />
 			) : (
 				<div>
 					<Row>
-						{journeys
-							.filter((item) => item.Bookmark)
-							.map((item) => (
-								<Col key={item.id} md={3} className='d-flex justify-content-center'>
-									<JourneyCard item={item} />
-								</Col>
-							))}
+						{bookmarks.map((item) => (
+							<Col key={item.id} md={3} className='d-flex justify-content-center'>
+								<JourneyCard item={item.Journey} isBookmarked={true} />
+							</Col>
+						))}
 					</Row>
 				</div>
 			)}
